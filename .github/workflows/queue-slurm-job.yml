@@ -6,6 +6,9 @@ on:
 jobs: 
   queue:
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash -l {0}
     steps: 
       - uses: actions/checkout@v4
       - name: Get a short version of the GIT commit SHA to use in naming files
