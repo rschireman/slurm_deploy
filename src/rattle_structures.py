@@ -17,7 +17,7 @@ from hiphive.structure_generation import (generate_rattled_structures,
                                           generate_mc_rattled_structures,
                                           generate_phonon_rattled_structures)
 
-prim = read('../structure_files/iceXI.cif')
+prim = read('./structure_files/iceXI.cif')
 
 # parameters
 size = 2            # supercell size

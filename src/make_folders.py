@@ -33,7 +33,7 @@ def main():
             write(f"{structure_dir}/fort.34", structure)
 
             # Copy the INPUT file to the structure's directory
-            os.system(f"cp ../input_templates/input_template.txt {structure_dir}/INPUT")
+            os.system(f"cp ./input_templates/input_template.txt {structure_dir}/INPUT")
          
 if __name__ == "__main__":
     main()            
