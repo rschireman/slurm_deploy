@@ -23,7 +23,6 @@ def main():
             # Update structure's positions and cell
             structure.set_positions(structure.get_positions())
             structure.set_cell(structure.get_cell())
-            structure.center()
 
             # Create directory for each structure
             structure_dir = f"{chunk_dir}/run_{structure_index + 1}"
