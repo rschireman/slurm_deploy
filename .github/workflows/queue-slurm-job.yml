@@ -45,5 +45,5 @@ jobs:
             sbatch ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
      - name: rattle structures           
        run: | 
-            python3 rattle_structures.py  
+            python3 src/rattle_structures.py  
 
