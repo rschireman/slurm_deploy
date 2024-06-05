@@ -1,12 +1,10 @@
 name: SLURM Queue Workflow
-
 on: 
   push: 
     branches:
       - 'main'
-
 jobs: 
-  enqueue:
+  queue:
     runs-on: ubuntu-latest
     steps: 
       - uses: actions/checkout@v4
@@ -21,14 +19,14 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-      - name: Execute script to enqueue job in cluster
+      - name: Execute script to queue job in cluster
         uses: appleboy/ssh-action@v0.1.3
         with: 
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
-            cd "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
+            cd /users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}
             conda activate slurm-deploy
             python3 src/rattle_structures.py
             python3 src/makefolders.py
