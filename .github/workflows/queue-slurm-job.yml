@@ -10,14 +10,7 @@ jobs:
         run:
           shell: bash -l {0}
     steps: 
-     - uses: conda-incubator/setup-miniconda@v2
-       with:
-         activate-environment: anaconda-client-env
-         environment-file: etc/environment.yml
-         auto-activate-base: false
-     - run: |
-        conda info
-        conda list
+
      - uses: actions/checkout@v4
      - name: Get a short version of the GIT commit SHA to use in naming files
        id: getshortsha
@@ -30,6 +23,16 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
+     - uses: conda-incubator/setup-miniconda@v3
+       with:
+            auto-update-conda: true
+            activate-environment: anaconda-client-env
+            environment-file: etc/environment.yml
+            auto-activate-base: false
+     - run: |
+           conda info
+           conda list
+
      - name: Execute script to queue job in cluster
        uses: appleboy/ssh-action@v0.1.3
        with: 
