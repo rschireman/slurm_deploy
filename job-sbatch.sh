@@ -2,7 +2,7 @@
 #SBATCH --job-name=pcrystal
 #SBATCH --partition=bluemoon
 #SBATCH --array=1-10  # Change this to the desired array size
-#SBATCH --ntasks=256
+#SBATCH --ntasks=128
 #SBATCH --time=8:00:00  # Adjust the time limit as needed
 
 
