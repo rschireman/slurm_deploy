@@ -13,13 +13,11 @@ jobs:
       - name: Get a short version of the GIT commit SHA to use in naming files
         id: getshortsha
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - name: rsync deployments
-        uses: burnett01/rsync-deployments@7.0.1
+      - name: Copy files over to the cluster
+        uses: garygrossgarten/github-action-scp@v0.6.0 
         with:
-          path: ./
-          remote_host: vacc-user2.uvm.edu
-          remote_user: rschirem
-          remote: "/users/r/s/rschirem/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
+          local: ./
+          remote: "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
@@ -30,6 +28,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
-            cd "your-directory/${{ steps.getshortsha.outputs.sha_short }}"
+            cd "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
+            python3 src/makefolders.py
             mv job-sbatcher.sh ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
             sbatch ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
