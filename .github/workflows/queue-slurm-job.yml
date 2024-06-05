@@ -43,7 +43,7 @@ jobs:
             python3 src/make_folders.py      
      - name: Find run directories 
        run: |
-            dirs=$(find . ! -name '*[!0-9]*\{1,3\}' -type d)
+            dirs=$(find . ! -name '[!0-9]*' -type d)
             echo "directories=$(echo \"$dirs\" | tr '\n' ',')" >> $GITHUB_ENV
      - name: Print dirs
        run: echo "$directories"               
