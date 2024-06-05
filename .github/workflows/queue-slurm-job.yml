@@ -43,8 +43,8 @@ jobs:
             python3 src/make_folders.py      
      - name: Find run directories 
        run: |
-            dirs=$(find . ! -name '[!0-9]*' -type d)
-            echo "directories=$dirs >> $GITHUB_ENV
+            export dirs=$(find . ! -name '[!0-9]*' -type d)
+            echo "directories=$dirs" >> $GITHUB_ENV
      - name: Print dirs
        run: echo "$directories"               
      - uses: actions/upload-artifact@v4
