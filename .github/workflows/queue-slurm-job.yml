@@ -44,7 +44,8 @@ jobs:
      - name: Find run directories 
        run: |
             dirs=$(find . -type d -regex './[0-9]\{1,3\}')
-            echo "directories=$dirs" >> $GITHUB_ENV            
+            echo "directories=$dirs" >> $GITHUB_ENV 
+            echo $directories           
      - uses: actions/upload-artifact@v2
        with:
             name: Find run directories 
