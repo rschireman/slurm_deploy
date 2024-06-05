@@ -36,7 +36,7 @@ jobs:
             python3 src/rattle_structures.py  
      - uses: actions/upload-artifact@v2
        with:
-        name: rattle structures
+        name: upload rattle structures
         path: structures_*       
      - name: make folders for crystal23 runs
        run: | 
@@ -45,14 +45,15 @@ jobs:
        run: |
             dirs=$(find . -type d -regex './[0-9]\{1,3\}')
             echo "directories=$(echo \"$dirs\" | tr '\n' ',')" >> $GITHUB_ENV
-            echo $directories           
+     - name: Print dirs
+       run: echo "$directories"               
      - uses: actions/upload-artifact@v4
        with:
             name: run folders 
             path: ${{ env.directories }}      
      - uses: actions/download-artifact@v4
        with:
-            name: rattle structures
+            name: upload rattle structures
             path: ./
      - uses: actions/download-artifact@v4
        with:
