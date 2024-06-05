@@ -34,8 +34,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
             cd "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
-            ${{ secrets.CONDA_PATH}}/conda init
-            conda activate slurm-deploy || true
+            ${{ secrets.CONDA_PATH}}/activate slurm-deploy || true
             python3 src/rattle_structures.py
             python3 src/make_folders.py
             mv job-sbatch.sh ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
