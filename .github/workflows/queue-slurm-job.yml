@@ -34,9 +34,23 @@ jobs:
      - name: rattle structures           
        run: | 
             python3 src/rattle_structures.py  
+     - uses: actions/upload-artifact@v2
+       with:
+        name: rattle structures
+        path: structures_*       
      - name: make folders for crystal23 runs
        run: | 
-            python3 src/make_folders.py                 
+            python3 src/make_folders.py      
+     - uses: actions/upload-artifact@v2
+       with:
+            name: run folders
+            path: find . -type d -regex '.*/[0-9]\{1,3\}'         
+     - uses: actions/download-artifact@v2
+       with:
+            name: rattle structures
+     - uses: actions/download-artifact@v2
+       with:
+            name: run folders                     
      - name: Execute script to queue job array in cluster
        uses: appleboy/ssh-action@v0.1.3
        with: 
