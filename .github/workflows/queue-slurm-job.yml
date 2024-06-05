@@ -11,10 +11,6 @@ jobs:
           shell: bash -l {0}
     steps: 
       - uses: actions/checkout@v4
-    #   - name: Set up Python 3.8
-    #     uses: actions/setup-python@v2
-    #     with:
-    #       python-version: 3.11
       - name: Get a short version of the GIT commit SHA to use in naming files
         id: getshortsha
         run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
