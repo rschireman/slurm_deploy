@@ -29,6 +29,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
             cd "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
+            conda activate slurm-deploy
             python3 src/rattle_structures.py
             python3 src/makefolders.py
             mv job-sbatch.sh ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
