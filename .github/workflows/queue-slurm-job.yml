@@ -10,28 +10,35 @@ jobs:
         run:
           shell: bash -l {0}
     steps: 
-      - uses: actions/checkout@v4
-      - name: Get a short version of the GIT commit SHA to use in naming files
-        id: getshortsha
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
-      - name: Copy files over to the cluster
-        uses: garygrossgarten/github-action-scp@v0.6.0 
-        with:
+     - uses: conda-incubator/setup-miniconda@v2
+       with:
+         activate-environment: slurm-deploy
+         environment-file: etc/example-environment.yml
+         auto-activate-base: false
+     - run: |
+        conda info
+        conda list
+     - uses: actions/checkout@v4
+     - name: Get a short version of the GIT commit SHA to use in naming files
+       id: getshortsha
+       run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+     - name: Copy files over to the cluster
+       uses: garygrossgarten/github-action-scp@v0.6.0 
+       with:
           local: ./
           remote: "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
-      - name: Execute script to queue job in cluster
-        uses: appleboy/ssh-action@v0.1.3
-        with: 
+     - name: Execute script to queue job in cluster
+       uses: appleboy/ssh-action@v0.1.3
+       with: 
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
             cd "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
             module load gcc-9.3.0-gcc-7.3.0-fjzqkyt
-            ${{ secrets.CONDA_PATH}}/activate slurm-deploy || true
             python3 src/rattle_structures.py
             python3 src/make_folders.py
             mv job-sbatch.sh ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
