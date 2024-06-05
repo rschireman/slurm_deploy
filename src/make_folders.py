@@ -11,7 +11,7 @@ def divide_chunks(data_list, chunk_size):
 # Read data from the file
 data = read('structures_rattle.extxyz', index=':')
 
-# Split data into chunks of 500
+# Split data into chunks of 500 (depends on joblimit of your cluster)
 chunked_data = list(divide_chunks(data, 500))
 print(chunked_data)
 
@@ -34,4 +34,4 @@ for chunk_index, chunk in enumerate(chunked_data):
         write(f"{structure_dir}/fort.34", structure)
 
         # Copy the INPUT file to the structure's directory
-        os.system(f"cp INPUT {structure_dir}/")
+        os.system(f"cp ../input_templates/input_template.txt {structure_dir}/INPUT")
