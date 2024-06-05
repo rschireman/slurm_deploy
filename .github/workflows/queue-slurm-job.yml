@@ -32,7 +32,6 @@ jobs:
      - run: |
            conda info
            conda list
-
      - name: Execute script to queue job in cluster
        uses: appleboy/ssh-action@v0.1.3
        with: 
