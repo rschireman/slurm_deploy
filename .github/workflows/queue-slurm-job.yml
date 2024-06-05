@@ -30,6 +30,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
             cd "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
+            module load gcc-9.3.0-gcc-7.3.0-fjzqkyt
             ${{ secrets.CONDA_PATH}}/activate slurm-deploy || true
             python3 src/rattle_structures.py
             python3 src/make_folders.py

@@ -21,7 +21,7 @@ prim = read('./structure_files/iceXI.cif')
 
 # parameters
 size = 2            # supercell size
-n_structures = 100      # number of configurations to generate
+n_structures = 10      # number of configurations to generate
 
 rattle_std = 0.001
 min_distance = 0.00003 
