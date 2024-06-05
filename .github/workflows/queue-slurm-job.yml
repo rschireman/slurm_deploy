@@ -1,0 +1,35 @@
+name: SLURM Queue Workflow
+
+on: 
+  push: 
+    branches:
+      - 'master'
+
+jobs: 
+  enqueue:
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v4
+      - name: Get a short version of the GIT commit SHA to use in naming files
+        id: getshortsha
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@7.0.1
+        with:
+          path: ./
+          remote_host: vacc-user2.uvm.edu
+          remote_user: rschirem
+          remote: "/users/r/s/rschirem/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+      - name: Execute script to enqueue job in cluster
+        uses: appleboy/ssh-action@v0.1.3
+        with: 
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          password: ${{ secrets.SSH_PASSWORD }}
+          script: | 
+            cd "your-directory/${{ steps.getshortsha.outputs.sha_short }}"
+            mv job-sbatcher.sh ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
+            sbatch ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh

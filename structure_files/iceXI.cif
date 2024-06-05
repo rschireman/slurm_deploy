@@ -1,0 +1,47 @@
+
+#######################################################################
+#
+#                 Cambridge Crystallographic Data Centre
+#                                CCDC 
+#
+#######################################################################
+#
+# If this CIF has been generated from an entry in the Cambridge 
+# Structural Database, then it will include bibliographic, chemical, 
+# crystal, experimental, refinement or atomic coordinate data resulting 
+# from the CCDC's data processing and validation procedures.
+#
+#######################################################################
+
+data_iceXI
+_symmetry_Int_Tables_number      1
+loop_
+_symmetry_equiv_pos_site_id
+_symmetry_equiv_pos_as_xyz
+1 x,y,z
+_cell_length_a                   4.48268120
+_cell_length_b                   4.48268120
+_cell_length_c                   7.31937923
+_cell_angle_alpha                90
+_cell_angle_beta                 90
+_cell_angle_gamma                60.048205
+_cell_volume                     123.407773
+loop_
+_atom_site_type_symbol
+_atom_site_fract_x
+_atom_site_fract_y
+_atom_site_fract_z
+O    -3.361196420302E-01 -3.361196420302E-01 -4.368424486453E-01
+O     3.361196420302E-01  3.361196420302E-01  6.315755135470E-02
+H    -9.828046529220E-02 -4.499307591890E-01 -4.830684018049E-01
+H     9.828046529220E-02  4.499307591890E-01  1.693159819510E-02
+H    -4.499307591890E-01 -9.828046529220E-02 -4.830684018049E-01
+H     4.499307591890E-01  9.828046529220E-02  1.693159819510E-02
+O     3.304527464230E-01  3.304527464230E-01  4.385357937555E-01
+O    -3.304527464230E-01 -3.304527464230E-01 -6.146420624450E-02
+H     3.332938248342E-01  3.332938248342E-01  3.041469017274E-01
+H    -3.332938248342E-01 -3.332938248342E-01 -1.958530982726E-01
+H     4.511727682926E-01  4.511727682926E-01  4.795965567721E-01
+H    -4.511727682926E-01 -4.511727682926E-01 -2.040344322790E-02
+
+#END
