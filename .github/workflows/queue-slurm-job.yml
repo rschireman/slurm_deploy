@@ -24,7 +24,7 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
      - name: rattle structures 
-       run: src/rattle_structures.py  
+       run: python3 src/rattle_structures.py  
      - name: upload structures      
        uses: actions/upload-artifact@v4 
        with:               
