@@ -22,7 +22,14 @@ jobs:
           remote: "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
-          password: ${{ secrets.SSH_PASSWORD }}                 
+          password: ${{ secrets.SSH_PASSWORD }}
+     - name: rattle structures 
+       run: src/rattle_structures.py  
+     - name: upload structures      
+       uses: actions/upload-artifact@v4 
+       with:               
+         name: rattle structures
+         path: structures_*
      - name: Execute script to queue job array in cluster
        uses: appleboy/ssh-action@v0.1.3
        with: 
