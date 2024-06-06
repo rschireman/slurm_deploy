@@ -1,7 +1,7 @@
 import os
 from ase.io import read, write
-from ase.db import connect
 import numpy as np
+import shutil
 
 def divide_chunks(data_list, chunk_size):
     """Yield successive chunks of specified size from data_list."""
@@ -32,7 +32,7 @@ def main():
             write(f"{structure_dir}/fort.34", structure)
 
             # Copy the INPUT file to the structure's directory
-            os.system(f"cp ./input_templates/input_template.txt {structure_dir}/INPUT")
+            shutil.copy("./input_templates/input_template.txt", f"{structure_dir}/INPUT")
          
 if __name__ == "__main__":
     main()            
