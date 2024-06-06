@@ -2,6 +2,7 @@ import os
 from ase.io import read, write
 import numpy as np
 import shutil
+import glob
 
 def divide_chunks(data_list, chunk_size):
     """Yield successive chunks of specified size from data_list."""
@@ -9,7 +10,7 @@ def divide_chunks(data_list, chunk_size):
         yield data_list[i:i + chunk_size]
 def main():
     # Read data from the file
-    data = read('structures_*.extxyz', index=':')
+    data = read(glob.glob('structures_*.extxyz')[0], index=':')
     print(data)
     # Split data into chunks of 500 (depends on joblimit of your cluster)
     chunked_data = list(divide_chunks(data, 500))

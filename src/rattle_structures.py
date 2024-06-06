@@ -27,7 +27,6 @@ def main():
   min_distance = 0.00003 
 
   supercell = prim.repeat(size)
-  reference_positions = supercell.get_positions()
   write('reference_structure.xyz', supercell)
 
   # Monte Carlo rattle
