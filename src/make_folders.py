@@ -9,7 +9,7 @@ def divide_chunks(data_list, chunk_size):
         yield data_list[i:i + chunk_size]
 def main():
     # Read data from the file
-    data = read('structures_rattle.extxyz', index=':')
+    data = read('structures_*.extxyz', index=':')
     print(data)
     # Split data into chunks of 500 (depends on joblimit of your cluster)
     chunked_data = list(divide_chunks(data, 500))
