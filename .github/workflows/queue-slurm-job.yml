@@ -3,7 +3,7 @@ on:
   push: 
     branches:
       - 'main'
-jobs: 
+jobs:   
   queue:
     runs-on: ubuntu-latest
     defaults:
@@ -42,6 +42,7 @@ jobs:
        run: | 
             python3 src/make_folders.py      
      - name: Find run directories 
+       id: run_dirs
        run: |
             {
             export dirs=$(find . ! -name '[!0-9]*' -type d)
@@ -67,7 +68,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: | 
             cd "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"
-            module load gcc-9.3.0-gcc-7.3.0-fjzqkyt
             mv job-sbatch.sh ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
             sbatch ${{ steps.getshortsha.outputs.sha_short }}-job-sbatch.sh
 
