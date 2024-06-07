@@ -18,7 +18,7 @@ def main():
     # Process each chunk
     for chunk_index, chunk in enumerate(chunked_data):
         chunk_dir = str(chunk_index)
-        os.mkdir(f"runs/{chunk_dir}/")
+        # os.mkdir(f"runs/{chunk_dir}/")
 
         for structure_index, structure in enumerate(chunk):
             # Update structure's positions and cell
