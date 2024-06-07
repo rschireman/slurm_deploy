@@ -7,7 +7,7 @@
 
 
 
-cd run_${SLURM_ARRAY_TASK_ID}
+cd runs/run_${SLURM_ARRAY_TASK_ID}
 
 source /users/r/s/rschirem/intel/oneapi/setvars.sh
 /users/r/s/rschirem/CRYSTAL_23/ompi/bin/mpirun /users/r/s/rschirem/CRYSTAL_23/bin/Linux-ifort_openmpi_i64_clut/std/Pcrystal </dev/null &> output_${SLURM_ARRAY_TASK_ID}.out
