@@ -26,7 +26,7 @@ def main():
             structure.set_cell(structure.get_cell())
 
             # Create directory for each structure
-            structure_dir = f"{chunk_dir}/run_{structure_index + 1}"
+            structure_dir = f"runs/{chunk_dir}/run_{structure_index + 1}"
             os.makedirs(structure_dir)
 
             # Write structure to file
