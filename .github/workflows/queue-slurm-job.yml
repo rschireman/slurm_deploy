@@ -46,7 +46,8 @@ jobs:
        uses: garygrossgarten/github-action-scp@v0.6.0 
        with:
          local: ./
-         remote: "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"           host: ${{ secrets.SSH_HOST }}
+         remote: "/users/r/s/${{ secrets.SSH_USERNAME }}/scratch/JOBS/${{ steps.getshortsha.outputs.sha_short }}"           
+         host: ${{ secrets.SSH_HOST }}
          username: ${{ secrets.SSH_USERNAME }}
          password: ${{ secrets.SSH_PASSWORD }}
     #  - name: Execute script to queue job array in cluster
